@@ -28,7 +28,7 @@ Route::namespace('Site')->name('site.')->group(function() {
         Route::get('/edit/{slug}', [SchoolController::class, 'edit'])->name('edit');
         Route::get('/delete/{slug}', [SchoolController::class, 'destroy'])->name('delete');
 
-        Route::post('/create', [SchoolController::class, 'store'])->name('create');
+        Route::post('/create', [SchoolController::class, 'store'])->name('store');
     });
 
     Route::name('student.')->prefix('student')->group(function() {

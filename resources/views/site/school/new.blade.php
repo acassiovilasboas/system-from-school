@@ -41,47 +41,48 @@
                     <div class="card-style mb-30">
                         <h6 class="mb-25">Dados da Escola</h6>
                         <div class="row">
-                            <form action="{{route('')}}">
+                            <form action="{{route('site.school.store')}}" method="POST">
                                 @csrf
                                 <div class="input-style-1 col-lg-12">
                                     <label>Nome da Escola</label>
-                                    <input type="text" placeholder="Ex.: Escola EMC" />
+                                    <input type="text" name="name" placeholder="Ex.: Escola EMC" />
                                 </div>
                                 <!-- end input -->
                                 <div class="input-style-1 col-lg-6">
                                     <label>Endereço</label>
-                                    <input type="text" placeholder="Ex.: Rua Dr. Frederico, 325" />
+                                    <input type="text" name="address" placeholder="Ex.: Rua Dr. Frederico, 325" />
                                 </div>
                                 <!-- end input -->
                                 <div class="input-style-1 col-lg-6">
                                     <label>Bairro</label>
-                                    <input type="text" placeholder="Ex.: Jardim das Rosas" />
+                                    <input type="text" name="district" placeholder="Ex.: Jardim das Rosas" />
                                 </div>
                                 <!-- end input -->
                                 <div class="input-style-1 col-lg-6">
                                     <label>Cidade</label>
-                                    <input type="text" placeholder="Ex.: Jardim das Rosas" />
+                                    <input type="text" name="city" placeholder="Ex.: Jardim das Rosas" />
                                 </div>
                                 <!-- end input -->
                                 <div class="select-style-1 col-lg-6">
                                     <label>Estado</label>
                                     <div class="select-position">
-                                        <select>
+                                        <select name="state">
                                             <option value="">Selecione</option>
-                                            <option value="">São Paulo</option>
-                                            <option value="">Rio de Janeiro</option>
-                                            <option value="">Espirito Santo</option>
+                                            <option value="SP">São Paulo</option>
+                                            <option value="RJ">Rio de Janeiro</option>
+                                            <option value="ES">Espirito Santo</option>
                                         </select>
                                     </div>
                                 </div>
                                 <!-- end select -->
+                                <button type="submit" class="main-btn primary-btn rounded-md btn-hover col-12">Salvar</button>
+
                             </form>
                         </div>
                     </div>
                     <!-- end card -->
                     <!-- ======= input style end ======= -->
 
-                    <a href="#0" class="main-btn primary-btn rounded-md btn-hover col-12">Salvar</a>
 
                 </div>
                 <!-- end col -->
