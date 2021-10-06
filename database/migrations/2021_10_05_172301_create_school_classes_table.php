@@ -18,7 +18,7 @@ class CreateSchoolClassesTable extends Migration
             $table->foreignId('school_id')->constrained();
             $table->date('year');
             $table->string('level_education');
-            $table->string('shcool_year');
+            $table->string('school_year');
             $table->string('rotation');
             $table->timestamps();
             $table->softDeletes();

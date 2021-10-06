@@ -19,7 +19,7 @@ class School extends Model
         'state'
     ];
 
-    public function shcoolClasses()
+    public function schoolClasses()
     {
         return $this->belongsToMany(SchoolClass::class);
     }
