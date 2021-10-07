@@ -41,23 +41,23 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param string $slug
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        return view('site.student.show', ['slug' => $slug]);
+        return view('site.student.show', ['id' => $id]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param string $slug
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
-        return view('site.student.edit', ['slug' => $slug]);
+        return view('site.student.edit', ['id' => $id]);
     }
 
     /**

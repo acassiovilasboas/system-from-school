@@ -41,8 +41,8 @@
                     <div class="card-style mb-30">
                         <h6 class="mb-25">Dados da Escola</h6>
                         <form action="{{route('site.school.store')}}" method="POST">
+                            @csrf
                             <div class="row">
-                                @csrf
                                 <div class="input-style-1 col-lg-12">
                                     <label>Nome da Escola</label>
                                     <input type="text" name="name" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" placeholder="Ex.: Escola EMC" />

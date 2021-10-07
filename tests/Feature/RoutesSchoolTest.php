@@ -28,7 +28,7 @@ class RoutesSchoolTest extends TestCase
      */
     public function hasSchoolShow()
     {
-        $response = $this->get('/school/show/test');
+        $response = $this->get('/school/show/1');
 
         $response->assertStatus(200);
     }
@@ -54,7 +54,7 @@ class RoutesSchoolTest extends TestCase
      */
     public function hasSchoolEdit()
     {
-        $response = $this->get('/school/edit/dd');
+        $response = $this->get('/school/edit/1');
 
         $response->assertStatus(200);
     }
@@ -67,7 +67,7 @@ class RoutesSchoolTest extends TestCase
      */
     public function hasSchoolDelete()
     {
-        $response = $this->get('/school/delete/dd');
+        $response = $this->get('/school/delete/1');
 
         $response->assertStatus(200);
     }

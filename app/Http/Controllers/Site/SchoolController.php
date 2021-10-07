@@ -25,7 +25,12 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        return view('site.school.index');
+        try {
+            $result = $this->schoolService->getAll();
+        } catch(Exception $e) {
+            $result = $e->getMessage();
+        }
+        return view('site.school.index', ['result', $result]);
     }
 
     /**
@@ -46,16 +51,10 @@ class SchoolController extends Controller
      */
     public function store(StoreSchoolRequest $request)
     {
-        
-        $result = ['status' => 200];
-
         try {
-            $result['data'] = $this->schoolService->save($request);
+            $result = $this->schoolService->save($request);
         } catch(Exception $e) {
-            $result = [
-                'status' => 500,
-                'error' => $e->getMessage()
-            ];
+            $result = $e->getMessage();
         }
         
         return redirect()->route('site.school.index')->with([
@@ -67,23 +66,34 @@ class SchoolController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param string $slug
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        return view('site.school.show', ['slug' => $slug]);
+        try {
+            $result = $this->schoolService->getById($id);
+        } catch(Exception $e) {
+            $result = $e->getMessage();
+        }
+
+        return view('site.school.show', ['result' => $result]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param string $slug
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
-        return view('site.school.edit', ['slug' => $slug]);
+        try {
+            $result = $this->schoolService->getById($id);
+        } catch(Exception $e) {
+            $result = $e->getMessage();
+        }
+        return view('site.school.edit', ['result' => $result]);
     }
 
     /**
@@ -93,9 +103,17 @@ class SchoolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreSchoolRequest $request, $id)
     {
-        ddd($request->all());
+        try {
+            $result = $this->schoolService->update($request, $id);
+        } catch (Exception $e) {
+            $result = $e->getMessage();
+        }
+        return redirect()->route('site.school.index')->with([
+            'success' => true,
+            'message' => 'Escola atualizada com sucesso!'
+        ]);
     }
 
     /**
@@ -106,6 +124,17 @@ class SchoolController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $result = $this->schoolService->destroy($id);
+        } catch(Exception $e) {
+            return redirect()->route('site.school.index')->with([
+                'success' => true,
+                'message' => 'Não foi possível excluir.'
+            ]);
+        }
+        return redirect()->route('site.school.index')->with([
+            'success' => true,
+            'message' => 'Escola excluída com sucesso!'
+        ]);
     }
 }

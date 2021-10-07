@@ -43,32 +43,32 @@
                             <div class="row">
                                 <div class="input-style-1 col-lg-12">
                                     <label>Nome da Escola</label>
-                                    <input type="text" placeholder="Ex.: Escola EMC" />
+                                    <input type="text" value="{{$result->name}}" disabled placeholder="Ex.: Escola EMC" />
                                 </div>
                                 <!-- end input -->
                                 <div class="input-style-1 col-lg-6">
                                     <label>Endereço</label>
-                                    <input type="text" placeholder="Ex.: Rua Dr. Frederico, 325" />
+                                    <input type="text" value="{{$result->address}}" disabled placeholder="Ex.: Rua Dr. Frederico, 325" />
                                 </div>
                                 <!-- end input -->
                                 <div class="input-style-1 col-lg-6">
                                     <label>Bairro</label>
-                                    <input type="text" placeholder="Ex.: Jardim das Rosas" />
+                                    <input type="text" value="{{$result->district}}" disabled placeholder="Ex.: Jardim das Rosas" />
                                 </div>
                                 <!-- end input -->
                                 <div class="input-style-1 col-lg-6">
                                     <label>Cidade</label>
-                                    <input type="text" placeholder="Ex.: Jardim das Rosas" />
+                                    <input type="text" value="{{$result->city}}" disabled placeholder="Ex.: Jardim das Rosas" />
                                 </div>
                                 <!-- end input -->
                                 <div class="select-style-1 col-lg-6">
                                     <label>Estado</label>
                                     <div class="select-position">
-                                        <select>
+                                        <select disabled>
                                             <option value="">Selecione</option>
-                                            <option value="">São Paulo</option>
-                                            <option value="">Rio de Janeiro</option>
-                                            <option value="">Espirito Santo</option>
+                                            <option value="SP" @if ($result->state == 'SP') selected @endif >São Paulo</option>
+                                            <option value="RJ" @if ($result->state == 'RJ') selected @endif >Rio de Janeiro</option>
+                                            <option value="ES" @if ($result->state == 'ES') selected @endif >Espirito Santo</option>
                                         </select>
                                     </div>
                                 </div>
@@ -78,7 +78,7 @@
                         <!-- end card -->
                         <!-- ======= input style end ======= -->
 
-                        <a href="#0" class="main-btn primary-btn rounded-md btn-hover col-12">Salvar</a>
+                        <a href="{{route('site.school.edit', $result->id)}}" class="main-btn primary-btn rounded-md btn-hover col-12">Editar</a>
 
                     </div>
                     <!-- end col -->

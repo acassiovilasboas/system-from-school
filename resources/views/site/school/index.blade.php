@@ -80,58 +80,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <div class="product">
-                                        <p class="text-sm">Escola EMC</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="text-sm">São Paulo</p>
-                                </td>
-                                <td>
-                                    <p class="text-sm">SP</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="product">
-                                        <p class="text-sm">Escola EMC</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="text-sm">São Paulo</p>
-                                </td>
-                                <td>
-                                    <p class="text-sm">SP</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="product">
-                                        <p class="text-sm">Escola EMC</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="text-sm">São Paulo</p>
-                                </td>
-                                <td>
-                                    <p class="text-sm">SP</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="product">
-                                        <p class="text-sm">Escola EMC</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="text-sm">São Paulo</p>
-                                </td>
-                                <td>
-                                    <p class="text-sm">SP</p>
-                                </td>
-                            </tr>
+                            @if($result)
+                                @foreach($result as $item)
+                                <tr>
+                                    <td>
+                                        <div class="product">
+                                            <p class="text-sm">{{$item->name}}</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="text-sm">{{$item->city}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-sm">{{$item->state}}</p>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            @endif
                         </tbody>
                     </table>
                     <!-- End Table -->

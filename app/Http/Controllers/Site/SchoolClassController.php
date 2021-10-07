@@ -42,23 +42,23 @@ class SchoolClassController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param string $slug
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        return view('site.schoolClass.show', ['slug' => $slug]);
+        return view('site.schoolClass.show', ['id' => $id]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param string $slug
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
-        return view('site.schoolClass.edit', ['slug' => $slug]);
+        return view('site.schoolClass.edit', ['id' => $id]);
     }
 
     /**

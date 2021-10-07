@@ -20,6 +20,7 @@ class RoutesStudentTest extends TestCase
         $response->assertStatus(200);
     }
 
+
     /**
      * Test has page student show.
      * @test
@@ -27,7 +28,7 @@ class RoutesStudentTest extends TestCase
      */
     public function hasStudentShow()
     {
-        $response = $this->get('/student/show/test');
+        $response = $this->get('/student/show/1');
 
         $response->assertStatus(200);
     }
@@ -53,7 +54,7 @@ class RoutesStudentTest extends TestCase
      */
     public function hasStudentEdit()
     {
-        $response = $this->get('/student/edit/dd');
+        $response = $this->get('/student/edit/1');
 
         $response->assertStatus(200);
     }
@@ -66,7 +67,7 @@ class RoutesStudentTest extends TestCase
      */
     public function hasStudentDelete()
     {
-        $response = $this->get('/student/delete/dd');
+        $response = $this->get('/student/delete/1');
 
         $response->assertStatus(200);
     }

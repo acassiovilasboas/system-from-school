@@ -28,7 +28,7 @@ class RoutesClassTest extends TestCase
      */
     public function hasClassShow()
     {
-        $response = $this->get('/class/show/test');
+        $response = $this->get('/class/show/1');
 
         $response->assertStatus(200);
     }
@@ -54,7 +54,7 @@ class RoutesClassTest extends TestCase
      */
     public function hasClassEdit()
     {
-        $response = $this->get('/class/edit/dd');
+        $response = $this->get('/class/edit/1');
 
         $response->assertStatus(200);
     }
@@ -67,8 +67,29 @@ class RoutesClassTest extends TestCase
      */
     public function hasClassDelete()
     {
-        $response = $this->get('/class/delete/dd');
+        $response = $this->get('/class/delete/1');
 
         $response->assertStatus(200);
     }
+
+
+     /**
+     * Test interact whie header in route store.
+     * @test
+     * @return void
+     */
+    // public function hasInteractWhitHeaderFromStore()
+    // {
+    //     $form = [
+    //         'school_id' => 5,
+    //         'year' => '2021',
+    //         'level_education' => 'medio',
+    //         'rotation' => 'matutino'
+    //     ];
+    //     $response = $this->withHeaders([
+    //         'X-Header' => 'Value',
+    //     ])->post('/class/create', $form);
+
+    //     $response->assertStatus(201);
+    // }
 }

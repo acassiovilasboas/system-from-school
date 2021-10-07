@@ -23,30 +23,33 @@ Route::namespace('Site')->name('site.')->group(function() {
 
     Route::name('school.')->prefix('school')->group(function () {
         Route::get('/', [SchoolController::class, 'index'])->name('index');
-        Route::get('/show/{slug}', [SchoolController::class, 'show'])->name('show');
+        Route::get('/show/{id}', [SchoolController::class, 'show'])->name('show');
         Route::get('/new', [SchoolController::class, 'create'])->name('new');
-        Route::get('/edit/{slug}', [SchoolController::class, 'edit'])->name('edit');
-        Route::get('/delete/{slug}', [SchoolController::class, 'destroy'])->name('delete');
-
+        Route::get('/edit/{id}', [SchoolController::class, 'edit'])->name('edit');
+        
         Route::post('/create', [SchoolController::class, 'store'])->name('store');
+        Route::put('/update/{id}', [SchoolController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [SchoolController::class, 'destroy'])->name('delete');
     });
 
     Route::name('student.')->prefix('student')->group(function() {
         Route::get('/', [StudentController::class, 'index'])->name('index');
-        Route::get('/show/{slug}', [StudentController::class, 'show'])->name('show');
+        Route::get('/show/{id}', [StudentController::class, 'show'])->name('show');
         Route::get('/new', [StudentController::class, 'create'])->name('new');
-        Route::get('/edit/{slug}', [StudentController::class, 'edit'])->name('edit');
-        Route::get('/delete/{slug}', [StudentController::class, 'destroy']);
+        Route::get('/edit/{id}', [StudentController::class, 'edit'])->name('edit');
+        Route::get('/delete/{id}', [StudentController::class, 'destroy']);
 
+        Route::post('/create', [StudentController::class, 'store'])->name('store');
     });
 
     Route::name('class.')->prefix('class')->group(function() {
         Route::get('/', [SchoolClassController::class, 'index'])->name('index');
-        Route::get('/show/{slug}', [SchoolClassController::class, 'show'])->name('show');
+        Route::get('/show/{id}', [SchoolClassController::class, 'show'])->name('show');
         Route::get('/new', [SchoolClassController::class, 'create'])->name('new');
-        Route::get('/edit/{slug}', [SchoolClassController::class, 'edit'])->name('edit');
-        Route::get('/delete/{slug}', [SchoolClassController::class, 'destroy']);
+        Route::get('/edit/{id}', [SchoolClassController::class, 'edit'])->name('edit');
+        Route::get('/delete/{id}', [SchoolClassController::class, 'destroy']);
 
+        Route::post('/create', [SchoolClassController::class, 'store'])->name('store');
     });
 
 });
