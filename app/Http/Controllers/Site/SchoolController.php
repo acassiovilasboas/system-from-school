@@ -3,10 +3,21 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreSchoolRequest;
+use App\Services\SchoolService;
+use Exception;
 use Illuminate\Http\Request;
 
 class SchoolController extends Controller
 {
+
+    protected $schoolService;
+
+    public function __construct(SchoolService $schoolService)
+    {
+        $this->schoolService = $schoolService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -33,9 +44,24 @@ class SchoolController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSchoolRequest $request)
     {
-        ddd($request->all());
+        
+        $result = ['status' => 200];
+
+        try {
+            $result['data'] = $this->schoolService->save($request);
+        } catch(Exception $e) {
+            $result = [
+                'status' => 500,
+                'error' => $e->getMessage()
+            ];
+        }
+        
+        return redirect()->route('site.school.index')->with([
+            'success' => true,
+            'message' => 'Escola incluída com sucesso!'
+        ]);
     }
 
     /**

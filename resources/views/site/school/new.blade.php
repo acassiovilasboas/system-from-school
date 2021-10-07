@@ -40,50 +40,64 @@
                     <!-- input style start -->
                     <div class="card-style mb-30">
                         <h6 class="mb-25">Dados da Escola</h6>
-                        <div class="row">
-                            <form action="{{route('site.school.store')}}" method="POST">
+                        <form action="{{route('site.school.store')}}" method="POST">
+                            <div class="row">
                                 @csrf
                                 <div class="input-style-1 col-lg-12">
                                     <label>Nome da Escola</label>
-                                    <input type="text" name="name" placeholder="Ex.: Escola EMC" />
+                                    <input type="text" name="name" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" placeholder="Ex.: Escola EMC" />
+                                    @error('name')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
                                 </div>
+                                
                                 <!-- end input -->
-                                <div class="input-style-1 col-lg-6">
+                                <div class="input-style-1 col-6">
                                     <label>Endereço</label>
-                                    <input type="text" name="address" placeholder="Ex.: Rua Dr. Frederico, 325" />
+                                    <input type="text" name="address" value="{{old('address')}}" class="form-control @error('address') is-invalid @enderror" placeholder="Ex.: Rua Dr. Frederico, 325" />
+                                    @error('address')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <!-- end input -->
-                                <div class="input-style-1 col-lg-6">
+                                <div class="input-style-1 col-6">
                                     <label>Bairro</label>
-                                    <input type="text" name="district" placeholder="Ex.: Jardim das Rosas" />
+                                    <input type="text" name="district" value="{{old('district')}}" class="form-control @error('district') is-invalid @enderror" placeholder="Ex.: Jardim das Rosas" />
+                                    @error('district')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <!-- end input -->
-                                <div class="input-style-1 col-lg-6">
+                                <div class="input-style-1 col-6">
                                     <label>Cidade</label>
-                                    <input type="text" name="city" placeholder="Ex.: Jardim das Rosas" />
+                                    <input type="text" name="city" value="{{old('city')}}" class="form-control @error('city') is-invalid @enderror" placeholder="Ex.: Jardim das Rosas" />
+                                    @error('city')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <!-- end input -->
-                                <div class="select-style-1 col-lg-6">
+                                <div class="select-style-1 col-6">
                                     <label>Estado</label>
                                     <div class="select-position">
-                                        <select name="state">
+                                        <select name="state" class="custom-select @error('state') is-invalid @enderror">
                                             <option value="">Selecione</option>
-                                            <option value="SP">São Paulo</option>
-                                            <option value="RJ">Rio de Janeiro</option>
-                                            <option value="ES">Espirito Santo</option>
+                                            <option value="SP" @if (old('state') == 'SP') selected @endif>São Paulo</option>
+                                            <option value="RJ" @if (old('state') == 'RJ') selected @endif>Rio de Janeiro</option>
+                                            <option value="ES" @if (old('state') == 'ES') selected @endif>Espirito Santo</option>
                                         </select>
+                                        @error('state')
+                                            <span class="invalid-feedback">{{ $message }}</span>
+                                        @enderror
                                     </div>
+                                       
                                 </div>
                                 <!-- end select -->
                                 <button type="submit" class="main-btn primary-btn rounded-md btn-hover col-12">Salvar</button>
-
-                            </form>
-                        </div>
+                            </div>
+                        </form>
                     </div>
                     <!-- end card -->
                     <!-- ======= input style end ======= -->
-
-
                 </div>
                 <!-- end col -->
             </div>
