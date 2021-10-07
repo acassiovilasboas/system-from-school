@@ -19,7 +19,7 @@
                                     <li class="breadcrumb-item">
                                         <a href="{{route('site.home')}}">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="{{route('site.shcool.index')}}">Todas as Escolas</a></li>
+                                    <li class="breadcrumb-item"><a href="{{route('site.school.index')}}">Todas as Escolas</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">
                                         Editando Escola
                                     </li>
