@@ -18,8 +18,22 @@ class SchoolClass extends Model
         'rotation' //turno (matutino, vespertino, noturno)
     ];
 
-    public function shocool()
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
+
+    public function school()
     {
         return $this->belongsTo(School::class);
     }
+    // public function shocool()
+    // {
+    //     return $this->belongsTo(School::class);
+    // }
+
+    // public function student()
+    // {
+    //     return $this->belongsToMany(Student::class, 'class_students', 'user_id', 'class_id');
+    // }
 }
