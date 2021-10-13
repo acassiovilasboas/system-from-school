@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSchoolRequest;
+use App\Models\School;
 use App\Services\SchoolService;
 use Exception;
 use Illuminate\Http\Request;
@@ -30,7 +31,18 @@ class SchoolController extends Controller
         } catch(Exception $e) {
             $result = $e->getMessage();
         }
-        return view('site.school.index', ['result', $result]);
+        // $result = (new School())->all();
+        return view('site.school.index', ['result' => $result]);
+    }
+
+    public function getClasses($id)
+    {
+        try {
+            $result = $this->schoolService->getClasses($id);
+        } catch (Exception $e) {
+            return response()->json($e->getMessage());
+        }
+        return response()->json($result);
     }
 
     /**
@@ -54,7 +66,10 @@ class SchoolController extends Controller
         try {
             $result = $this->schoolService->save($request);
         } catch(Exception $e) {
-            $result = $e->getMessage();
+            return redirect()->route('site.school.index')->with([
+                'success' => true,
+                'message' => 'Ooops! Ocorreu um erro inesperado!'
+            ]);
         }
         
         return redirect()->route('site.school.index')->with([
@@ -74,9 +89,11 @@ class SchoolController extends Controller
         try {
             $result = $this->schoolService->getById($id);
         } catch(Exception $e) {
-            $result = $e->getMessage();
+            return redirect()->route('site.school.index')->with([
+                'success' => true,
+                'message' => 'Ooops! ' . $e->getMessage()
+            ]);
         }
-
         return view('site.school.show', ['result' => $result]);
     }
 
@@ -91,7 +108,10 @@ class SchoolController extends Controller
         try {
             $result = $this->schoolService->getById($id);
         } catch(Exception $e) {
-            $result = $e->getMessage();
+            return redirect()->route('site.school.index')->with([
+                'success' => true,
+                'message' => 'Ooops! Ocorreu um erro inesperado!'
+            ]);
         }
         return view('site.school.edit', ['result' => $result]);
     }
@@ -108,7 +128,10 @@ class SchoolController extends Controller
         try {
             $result = $this->schoolService->update($request, $id);
         } catch (Exception $e) {
-            $result = $e->getMessage();
+            return redirect()->route('site.school.index')->with([
+                'success' => true,
+                'message' => 'Ooops! Ocorreu um erro inesperado!'
+            ]);
         }
         return redirect()->route('site.school.index')->with([
             'success' => true,

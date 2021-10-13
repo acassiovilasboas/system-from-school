@@ -3,11 +3,18 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
-use App\Services\SchoolService;
 use Illuminate\Http\Request;
+use App\Services\SchoolClassService;
 
 class SchoolClassController extends Controller
 {
+    protected $schoolClassService;
+
+    public function __construct(SchoolClassService $schoolClassService)
+    {
+        $this->schoolClassService = $schoolClassService;
+    }
+
      /**
      * Display a listing of the resource.
      *

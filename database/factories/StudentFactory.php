@@ -21,8 +21,14 @@ class StudentFactory extends Factory
      */
     public function definition()
     {
+        
+        
         return [
-            //
+            'name' => $this->faker->name,
+            'telphone' => $this->faker->phoneNumber(),
+            'email' => $this->faker->email(),
+            'birth_date' => $this->faker->date('Y-m-d'),
+            'genre' => 'M'
         ];
     }
 }

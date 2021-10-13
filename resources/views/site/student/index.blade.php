@@ -1,5 +1,14 @@
 @extends('layouts.site')
 @section('content')
+@if(session('success'))
+
+    <div class="alert alert-success alert-dismissible mt-3" role="alert">
+        {{session('message')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<!-- end alert-box -->
+@endif
+<!-- ========== section start ========== -->
     <!-- ========== section start ========== -->
     <section class="section">
       <div class="container-fluid">
@@ -52,7 +61,7 @@
                   justify-content-between
                 ">
               <div class="left">
-                <h6 class="text-medium mb-30">Escolas</h6>
+                <h6 class="text-medium mb-30">Alunos</h6>
               </div>
             </div>
             <!-- End Title -->
@@ -61,73 +70,42 @@
                 <thead>
                   <tr>
                     <th>
-                      <h6 class="text-sm text-medium">Escola</h6>
+                      <h6 class="text-sm text-medium">Nome</h6>
                     </th>
                     <th class="min-width">
                       <h6 class="text-sm text-medium">
-                        Cidade <i class="lni lni-arrows-vertical"></i>
+                        Idade <i class="lni lni-arrows-vertical"></i>
                       </h6>
                     </th>
                     <th class="min-width">
                       <h6 class="text-sm text-medium">
-                        Estado <i class="lni lni-arrows-vertical"></i>
+                        Escola <i class="lni lni-arrows-vertical"></i>
                       </h6>
                     </th>
                   </tr>
                 </thead>
                 <tbody>
+                  @if(!empty($result))
+                  @foreach($result as $item)
                   <tr>
                     <td>
                       <div class="product">
-                        <p class="text-sm">Escola EMC</p>
+                        <p class="text-sm"><a href="{{route('site.student.show', $item->id)}}">{{$item->name}}</a></p>
                       </div>
                     </td>
-                    <td>
-                      <p class="text-sm">São Paulo</p>
-                    </td>
-                    <td>
-                      <p class="text-sm">SP</p>
-                    </td>
-                  </tr>
-                  <tr>
                     <td>
                       <div class="product">
-                        <p class="text-sm">Escola EMC</p>
+                        <p class="text-sm">{{$item->age}}</p>
                       </div>
                     </td>
-                    <td>
-                      <p class="text-sm">São Paulo</p>
-                    </td>
-                    <td>
-                      <p class="text-sm">SP</p>
-                    </td>
-                  </tr>
-                  <tr>
                     <td>
                       <div class="product">
-                        <p class="text-sm">Escola EMC</p>
+                        <p class="text-sm">{{$item->school}}</p>
                       </div>
                     </td>
-                    <td>
-                      <p class="text-sm">São Paulo</p>
-                    </td>
-                    <td>
-                      <p class="text-sm">SP</p>
-                    </td>
                   </tr>
-                  <tr>
-                    <td>
-                      <div class="product">
-                        <p class="text-sm">Escola EMC</p>
-                      </div>
-                    </td>
-                    <td>
-                      <p class="text-sm">São Paulo</p>
-                    </td>
-                    <td>
-                      <p class="text-sm">SP</p>
-                    </td>
-                  </tr>
+                  @endforeach
+                  @endif
                 </tbody>
               </table>
               <!-- End Table -->

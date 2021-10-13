@@ -80,12 +80,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if($result)
+                            @if(!empty($result))
                                 @foreach($result as $item)
                                 <tr>
                                     <td>
                                         <div class="product">
-                                            <p class="text-sm">{{$item->name}}</p>
+                                            <a href="{{route('site.school.show', $item->id)}}" class="text-sm">{{$item->name}}</a>
                                         </div>
                                     </td>
                                     <td>
@@ -100,6 +100,9 @@
                         </tbody>
                     </table>
                     <!-- End Table -->
+                    <div class="container-fluid">
+                    {{ $result->links() }}
+                    </div>
                 </div>
             </div>
         </div>

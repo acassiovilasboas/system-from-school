@@ -21,6 +21,11 @@ class School extends Model
 
     public function schoolClasses()
     {
-        return $this->belongsToMany(SchoolClass::class);
+        return $this->hasMany(SchoolClass::class);
+    }
+
+    public function students()
+    {
+        return $this->hasManyThrough(Student::class, SchoolClass::class);
     }
 }

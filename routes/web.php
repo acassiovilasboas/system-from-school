@@ -19,13 +19,15 @@ use App\Http\Controllers\Site;
 
 Route::namespace('Site')->name('site.')->group(function() {
 
-    Route::get('/', [HomeController::class, '__invoke'])->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
     Route::name('school.')->prefix('school')->group(function () {
         Route::get('/', [SchoolController::class, 'index'])->name('index');
         Route::get('/show/{id}', [SchoolController::class, 'show'])->name('show');
         Route::get('/new', [SchoolController::class, 'create'])->name('new');
         Route::get('/edit/{id}', [SchoolController::class, 'edit'])->name('edit');
+
+        Route::get('/classes/{id}', [SchoolController::class, 'getClasses'])->name('classes');
         
         Route::post('/create', [SchoolController::class, 'store'])->name('store');
         Route::put('/update/{id}', [SchoolController::class, 'update'])->name('update');

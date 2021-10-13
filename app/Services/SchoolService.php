@@ -3,28 +3,33 @@
 namespace App\Services;
 
 use App\Http\Requests\StoreSchoolRequest;
-use App\Repositories\SchoolRepository;
-use Illuminate\Support\Facades\Validator;
-use InvalidArgumentException;
+use App\Interfaces\SchoolRepositoryInterface;
+use PharIo\Manifest\InvalidUrlException;
 
 class SchoolService
 {
     /**
-     * @var SchoolRespository
+     * @var schoolRepositoryInterface
      */
-    protected $schoolRepository;
+    protected $schoolRepositoryInterface;
 
     /**
-     * @param SchoolRepository $schoolRepository
+     * @param SchoolRepositoryInterface $schoolRepositoryInterface
      */
-    public function __construct(SchoolRepository $schoolRepository)
+    public function __construct(SchoolRepositoryInterface $schoolRepositoryInterface)
     {
-        $this->schoolRepository = $schoolRepository;
+        $this->schoolRepositoryInterface = $schoolRepositoryInterface;
     }
 
     public function getAll()
     {
-        return $this->schoolRepository->getAll();
+        $orderBy = "name";
+        return $this->schoolRepositoryInterface->getAll($orderBy);
+    }
+
+    public function getClasses($id)
+    {
+       return $this->schoolRepositoryInterface->getClasses($id);
     }
 
     public function save(StoreSchoolRequest $request) 
@@ -36,17 +41,20 @@ class SchoolService
             'city',
             'state'
         ]);
-
-        $result = $this->schoolRepository->save($data);
-
+        $result = $this->schoolRepositoryInterface->save($data);
         return $result;
     }
 
+
     public function getById($id)
     {
-        return $this->schoolRepository->getById($id);
+        $data =  $this->schoolRepositoryInterface->getById($id);
+        if(empty($data))
+            throw new InvalidUrlException("Registro inexistente.");
+        return $data;
     }
 
+    
     public function update(StoreSchoolRequest $request, $id)
     {
         $data = $request->only([
@@ -57,13 +65,13 @@ class SchoolService
             'state'
         ]);
 
-        $result = $this->schoolRepository->update($data, $id);
+        $result = $this->schoolRepositoryInterface->update($data, $id);
 
         return $result;
     }
 
     public function destroy($id)
     {
-        return $this->schoolRepository->destroy($id);
+        return $this->schoolRepositoryInterface->destroy($id);
     }
 }
