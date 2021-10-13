@@ -4,10 +4,18 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\SchoolClassService;
 
 class SchoolClassController extends Controller
 {
-    /**
+    protected $schoolClassService;
+
+    public function __construct(SchoolClassService $schoolClassService)
+    {
+        $this->schoolClassService = $schoolClassService;
+    }
+
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -41,23 +49,23 @@ class SchoolClassController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param string $slug
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        return view('site.schoolClass.show', ['slug' => $slug]);
+        return view('site.schoolClass.show', ['id' => $id]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param string $slug
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
-        return view('site.schoolClass.edit', ['slug' => $slug]);
+        return view('site.schoolClass.edit', ['id' => $id]);
     }
 
     /**

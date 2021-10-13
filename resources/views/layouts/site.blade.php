@@ -61,8 +61,8 @@
                 </button>
               </div>
               <div class="header-search d-none d-md-flex">
-                <form action="#">
-                  <input type="text" placeholder="Search..." />
+                <form action="{{route('site.home')}}" method="GET">
+                  <input type="text" name="search" placeholder="Search..." />
                   <button><i class="lni lni-search-alt"></i></button>
                 </form>
               </div>
